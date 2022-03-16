@@ -43,7 +43,7 @@
 #' # Convert Black Sea Bass rdat to Data object
 #' Data_BlackSeaBass <- rdat_to_Data(rdat_BlackSeaBass)
 #' # Run statistical catch-at-age model
-#' SCA(1,Data_BlackSeaBass)
+#' SCA(1,Data_BlackSeaBass,AddInd=1)
 #'
 #' }
 
@@ -74,23 +74,10 @@ rdat_to_Data <- function(
 )
 {
 if(is.null(Data)){
-  Data <- new('Data')
-  # Empty all slots to create completely blank Data object
-  # sn <- slotNames(Data)
-  # for(sn_i in sn){
-  #   slot_i <- slot(Data,sn_i)
-  #   cls_i <- class(slot_i)
-  #   if(cls_i=="character"){
-  #     slot_i <- ""
-  #   }else{
-  #     slot_i <- slot_i*NA
-  #   }
-  #   slot(Data,sn_i) <- slot_i
-  # }
+  Data <- Data_empty()
 }
 
-
-  rdat <- standardize_rdat(rdat)
+  rdat <- bamExtras::standardize_rdat(rdat)
 
   info <- rdat$info
   parms <- rdat$parms
@@ -110,7 +97,7 @@ if(is.null(Data)){
   # MSEtool expects age-based data to begin with age 0
   if(min(a.series$age)>0){
     message(paste(Name,": Minimum age > 0. Age-based data (a.series) linearly extrapolated to age-0"))
-    a.series <- data_polate(a.series,xout=0:max(a.series$age))
+    a.series <- bamExtras::data_polate(a.series,xout=0:max(a.series$age))
     a.series <- data_lim(a.series,xlim=c(0,Inf))
     a.series <- data_lim(a.series,xname=c("prop.female","prop.male","mat.female","mat.male"),xlim=c(0,1))
     a.series <- as.data.frame(a.series)
@@ -126,7 +113,7 @@ if(is.null(Data)){
     if(min(as.numeric(names(sel.i)))>0){
       message(paste0(Name,": Minimum age of ",i," > 0. ", i, " linearly extrapolated to age-0"))
         sel.i <- cbind("age"=as.numeric(names(sel.i)),"sel"=sel.i)
-        sel.i <- data_polate(sel.i,xout=0:max(sel.i[,"age"]))
+        sel.i <- bamExtras::data_polate(sel.i,xout=0:max(sel.i[,"age"]))
         sel.i <- data_lim(sel.i,xname="sel",xlim=c(0,1))
         # sel.i <- as.data.frame(sel.i)
         sel.age[[i]] <- setNames(sel.i[,"sel"],sel.i[,"age"])
@@ -136,7 +123,7 @@ if(is.null(Data)){
       if(min(as.numeric(colnames(sel.i)))>0){
         message(paste0(Name,": Minimum age of ",i," > 0. ", i, " linearly extrapolated to age-0"))
         sel.i <- cbind("age"=as.numeric(colnames(sel.i)),t(sel.i))
-        sel.i <- data_polate(sel.i,xout=0:max(sel.i[,"age"]))
+        sel.i <- bamExtras::data_polate(sel.i,xout=0:max(sel.i[,"age"]))
         sel.i <- data_lim(sel.i,xname=colnames(sel.i)[colnames(sel.i)!="age"],xlim=c(0,1))
         sel.i <- t(sel.i)
         colnames(sel.i) <- sel.i["age",]
@@ -204,7 +191,7 @@ if(min(as.numeric(colnames(B.age)))>0){
 
   tB.age <- t(B.age)
   tB.age <- cbind("age"=as.numeric(rownames(tB.age)),tB.age)
-  tB.age <- data_polate(tB.age,xout=age)
+  tB.age <- bamExtras::data_polate(tB.age,xout=age)
   tB.age <- tB.age[,colnames(tB.age)!="age"]
   tB.age <- data_lim(tB.age,xlim=c(0,Inf))
   rownames(tB.age) <- age

@@ -65,7 +65,7 @@ rdat_to_Stock <- function(
   herm = NULL, genus_species = NULL
 ){
 
-rdat <- standardize_rdat(rdat)
+rdat <- bamExtras::standardize_rdat(rdat)
 
 info <- rdat$info
 parms <- rdat$parms
@@ -80,7 +80,7 @@ nyears <- length(years)
 # MSEtool expects age-based data to begin with age 0
 if(min(a.series$age)>0){
   warning(paste(Name,": Minimum age > 0. Age-based data extrapolated to age-0"))
-  a.series <- data_polate(a.series,xout=0:max(a.series$age))
+  a.series <- bamExtras::data_polate(a.series,xout=0:max(a.series$age))
   a.series <- data_lim(a.series,xlim=c(0,Inf))
   a.series <- data_lim(a.series,xname=c("prop.female","prop.male","mat.female","mat.male"),xlim=c(0,1))
   a.series <- as.data.frame(a.series)
@@ -90,7 +90,7 @@ age <- a.series$age
 
 t.series <- t.series[years,]
 
-Common_Name <- str_replace_all(Name,"(?<=[a-z])(?=[A-Z])"," ")
+Common_Name <- stringr::str_replace_all(Name,"(?<=[a-z])(?=[A-Z])"," ")
 if(is.null(genus_species)){genus_species <- bamStockMisc[Name,"Species"]}
 if(is.null(herm)){herm <- bamStockMisc[Name,"herm"]}
 
@@ -178,7 +178,7 @@ slot(Stock,"Frac_area_1")  <-  Frac_area_1
 slot(Stock,"Prob_staying") <-  Prob_staying
 
 # Compute proportion mature at age
-pmat <- pmatage(a.series=a.series,Mat_age1_max=Mat_age1_max,herm=herm,age=age)$pmat
+pmat <- bamExtras::pmatage(a.series=a.series,Mat_age1_max=Mat_age1_max,herm=herm,age=age)$pmat
 
 # Compute maturity-at-length L50 and L50_95
 mat_at_len <- local({
@@ -189,12 +189,12 @@ mat_at_len <- local({
   age50 <- age_pr[which.min(abs(pmat_pr-0.50))] # age at 50% maturity
   age95 <- age_pr[which.min(abs(pmat_pr-0.95))] # age at 95% maturity
 
-  len50 <- vb_len(Linf=Linf, K=K, t0=t0, a=age50) # length at 50% maturity
-  len95 <- vb_len(Linf=Linf, K=K, t0=t0, a=age95) # length at 95% maturity
+  len50 <- bamExtras::vb_len(Linf=Linf, K=K, t0=t0, a=age50) # length at 50% maturity
+  len95 <- bamExtras::vb_len(Linf=Linf, K=K, t0=t0, a=age95) # length at 95% maturity
   return(list("L50"=len50,"L50_95"=len95-len50))
 })
 L50 <- mat_at_len$L50
-A50 <- vb_age(L=L50,Linf=Linf,K=K,t0=t0)
+A50 <- bamExtras::vb_age(L=L50,Linf=Linf,K=K,t0=t0)
 
 slot(Stock,"L50") <- mat_at_len$L50*L_50_scLim
 slot(Stock,"L50_95") <- mat_at_len$L50_95*L50_95_scLim

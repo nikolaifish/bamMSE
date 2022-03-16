@@ -37,9 +37,7 @@ rdat_to_Obs <- function(
   CAA_ESS_sc=0.3,
   CAL_ESS_sc=0.3
 ){
-  require(stringr)
-
-  rdat <- standardize_rdat(rdat)
+  rdat <- bamExtras::standardize_rdat(rdat)
 
   info <- rdat$info
   parms <- rdat$parms

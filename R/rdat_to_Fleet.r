@@ -52,7 +52,7 @@ rdat_to_Fleet <- function(
 )
 {
 
-rdat <- standardize_rdat(rdat)
+rdat <- bamExtras::standardize_rdat(rdat)
 
 info <- rdat$info
 parms <- rdat$parms

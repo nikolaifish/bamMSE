@@ -39,7 +39,7 @@ rdat_to_cpars <- function(rdat,nsim,nyears=NULL,proyears=50,
                           V_scaleToMax=FALSE,
                           ret_scaleToMax=FALSE
                           ){
-  rdat <- standardize_rdat(rdat)
+  rdat <- bamExtras::standardize_rdat(rdat)
   a.series <- rdat$a.series
   Name <- gsub(" ","",str_to_title(rdat$info$species))
   if(is.null(nyears)){
@@ -49,7 +49,7 @@ rdat_to_cpars <- function(rdat,nsim,nyears=NULL,proyears=50,
   # MSEtool expects age-based data to begin with age 0
   if(min(a.series$age)>0){
     warning(paste(Name,": Minimum age > 0. Age-based data extrapolated to age-0"))
-    a.series <- data_polate(a.series,xout=0:max(a.series$age))
+    a.series <- bamExtras::data_polate(a.series,xout=0:max(a.series$age))
     a.series <- data_lim(a.series,xlim=c(0,Inf))
     a.series <- data_lim(a.series,xname=c("prop.female","prop.male","mat.female","mat.male"),xlim=c(0,1))
     a.series <- as.data.frame(a.series)
@@ -68,7 +68,7 @@ rdat_to_cpars <- function(rdat,nsim,nyears=NULL,proyears=50,
   # Mat_age
   if(is.null(herm)){herm <- bamStockMisc[Name,"herm"]}
   # Compute proportion mature at age
-  pmat <- pmatage(a.series=a.series,Mat_age1_max=Mat_age1_max,herm=herm,age=age)$pmat
+  pmat <- bamExtras::pmatage(a.series=a.series,Mat_age1_max=Mat_age1_max,herm=herm,age=age)$pmat
 
   Mat_age_dim <- c(nsim,length(age),nyears+proyears)
   Mat_age <- array(data = rep(pmat,each=nsim), dim = Mat_age_dim,
