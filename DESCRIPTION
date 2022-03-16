@@ -1,0 +1,30 @@
+Package: bamMSE
+Title: Facilitating Management Strategy Evaluations (MSE) with the openMSE Packages, for Fish Species Assessed with the Beaufort Assessment Model (BAM)
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Nikolai",
+           family = "Klibansky",
+           role = c("aut", "cre"),
+           email = "nikolai.klibansky@noaa.gov",
+           comment = c(ORCID = "0000-0003-2025-5089"))
+Description: This package contains a set of functions used to convert data and assessment outputs from the Beaufort Assessment Model (BAM) to inputs used by the openMSE packages (DLMtool, MSEtool, and SAMtool). 
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+Encoding: UTF-8
+LazyData: true
+BuildVignettes: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+Depends: 
+    magrittr,
+    openMSE,
+    bamExtras,
+    R (>= 3.4.1)
+Imports:
+    abind,
+    measurements,
+    stringr
+Suggests:
+  knitr,
+  rmarkdown
+VignetteBuilder: knitr
