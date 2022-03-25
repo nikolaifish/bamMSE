@@ -15,9 +15,9 @@
 #' @examples
 #' \dontrun{
 #' # Build MSEtool Stock, Fleet, and Obs (Stock-class, Fleet-class, and Obs-class objects)
-#' Stock_RedPorgy <- rdat_to_Stock(rdat_RedPorgy)
-#' Fleet_RedPorgy <- rdat_to_Fleet(rdat_RedPorgy)
-#' Obs_RedPorgy <- rdat_to_Obs(rdat_RedPorgy)
+#' Stock_RedPorgy <- rdat2Stock(rdat_RedPorgy)
+#' Fleet_RedPorgy <- rdat2Fleet(rdat_RedPorgy)
+#' Obs_RedPorgy <- rdat2Obs(rdat_RedPorgy)
 #'
 #' # Build MSEtool operating model (OM-class object)
 #' OM_RedPorgy <- new("OM", Stock_RedPorgy, Fleet_RedPorgy, Obs_RedPorgy, Perfect_Imp)
@@ -26,7 +26,7 @@
 #' NOAA_plot(mse_out)
 #' }
 
-rdat_to_Obs <- function(
+rdat2Obs <- function(
   rdat,
   Obs = Perfect_Info,
   Ind_abb="all",
@@ -49,7 +49,7 @@ rdat_to_Obs <- function(
   styr <- parms$styr
   endyr <- parms$endyr
 
-  Name <- gsub(" ","",str_to_title(info$species))
+  Name <- gsub(" ","",stringr::str_to_title(info$species))
 
   # MSEtool expects age-based data to begin with age 0
   if(min(a.series$age)>0){
@@ -274,3 +274,7 @@ rdat_to_Obs <- function(
 
 return(Obs)
 }
+
+#' @rdname rdat2Obs
+#' @export
+rdat_to_Obs <- rdat2Obs

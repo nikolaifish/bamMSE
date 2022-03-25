@@ -14,14 +14,14 @@
 #' @examples
 #' \dontrun{
 #' # Build MSEtool Stock (Stock-class object)
-#' Stock_RedPorgy <- rdat_to_Stock(rdat_RedPorgy)
+#' Stock_RedPorgy <- rdat2Stock(rdat_RedPorgy)
 #'
 #' # Build MSEtool operating model (OM-class object)
 #' OM_RedPorgy <- new("OM", Stock_RedPorgy, Generic_Fleet, Precise_Unbiased, Perfect_Imp)
 #' # Copy OM
 #' OM_RedPorgy1 <- OM_RedPorgy2 <- OM_RedPorgy
 #' # Build cpars list
-#' cpars <- rdat_to_cpars(rdat_RedPorgy, nsim=slot(OM_RedPorgy,"nsim"), nyears=slot(OM_RedPorgy,"nyears"), proyears=slot(OM_RedPorgy,"proyears"))
+#' cpars <- rdat2cpars(rdat_RedPorgy, nsim=slot(OM_RedPorgy,"nsim"), nyears=slot(OM_RedPorgy,"nyears"), proyears=slot(OM_RedPorgy,"proyears"))
 #'
 #' slot(OM_RedPorgy2,"cpars") <- cpars
 #'
@@ -34,14 +34,14 @@
 #' NOAA_plot(mse_out2)
 #' }
 
-rdat_to_cpars <- function(rdat,nsim,nyears=NULL,proyears=50,
+rdat2cpars <- function(rdat,nsim,nyears=NULL,proyears=50,
                           Mat_age1_max = 0.49, herm = NULL,
                           V_scaleToMax=FALSE,
                           ret_scaleToMax=FALSE
                           ){
   rdat <- bamExtras::standardize_rdat(rdat)
   a.series <- rdat$a.series
-  Name <- gsub(" ","",str_to_title(rdat$info$species))
+  Name <- gsub(" ","",stringr::str_to_title(rdat$info$species))
   if(is.null(nyears)){
     nyears <- length(rdat$parms$styr:rdat$parms$endyr)
   }
@@ -121,3 +121,7 @@ rdat_to_cpars <- function(rdat,nsim,nyears=NULL,proyears=50,
 
   return(cpars)
 }
+
+#' @rdname rdat2cpars
+#' @export
+rdat_to_cpars <- rdat2cpars

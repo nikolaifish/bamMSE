@@ -21,7 +21,7 @@
 #' @param CV_vbLinf see \code{\link[MSEtool]{Data-class}}
 #' @param CV_vbt0 see \code{\link[MSEtool]{Data-class}}
 #' @param CV_Cat see \code{\link[MSEtool]{Data-class}}
-#' @param combine_indices Indicate whether indices should be combined or remain separate. logical.
+#' @param combine_indices Indicate whether indices should be combined (TRUE) or remain separate (FALSE). logical. If TRUE, then the function will populate the Ind and IndCV slots. If FALSE it will populate AddInd, CV_AddInd, AddIndV, AddIunits, and AddIndType slots.
 #' @param fleet_sel_abb_key Data frame with two columns "U" and "sel" for indicating the abbreviations for individual indices and the
 #' selectivity that should be used with it if the abbreviation for that index cannot be matched to a selectivity. This is used to build
 #' the AddIndV slot to correspond to the AddInd and CV_AddInd slots
@@ -30,7 +30,7 @@
 #' interim management procedures built with \code{\link[SAMtool]{make_interimMP}} the interim procedure will use the first index.
 #' \code{AddInd_order} does not need to include the abbreviations for all indices. Simply indicating the abbreviation of a single index
 #' will result in that index being first in the order followed by the remaining indices in the order they were provided. A value of "" will not modify the order of the indices.
-#' @param AddIndFleetType_key Named numeric vector indicating the units of each fleet type (s=survey, r=recreational, c=commercial) used
+#' @param AddIndFleetUnits_key Named numeric vector indicating the units of each fleet category (s=survey, r=recreational, c=commercial) used
 #' to determine AddIunits (see \code{\link[MSEtool]{Data-class}}). The names of the values in the key are matched to the first letter of the
 #' abbreviations of the indices.
 #' @details
@@ -41,13 +41,13 @@
 #' @examples
 #' \dontrun{
 #' # Convert Black Sea Bass rdat to Data object
-#' Data_BlackSeaBass <- rdat_to_Data(rdat_BlackSeaBass)
+#' Data_BlackSeaBass <- rdat2Data(rdat_BlackSeaBass)
 #' # Run statistical catch-at-age model
 #' SCA(1,Data_BlackSeaBass,AddInd=1)
 #'
 #' }
 
-rdat_to_Data <- function(
+rdat2Data <- function(
   rdat,
   Data = NULL,
   herm = NULL,
@@ -70,7 +70,7 @@ rdat_to_Data <- function(
   combine_indices=FALSE,
   fleet_sel_abb_key=data.frame("U"=c("sTV","rHB","rGN"),"sel"=c("sCT","rGN","rHB")),
   AddInd_order = c("sTV","sCT","sVD","sBL","sVL","sBT","sFT","rHB","rHB.D","cDV","cHL","cLL","cOT","cPT","cGN","rGN"),
-  AddIndFleetType_key = c("s"=0,"r"=0,"c"=1)
+  AddIndFleetUnits_key = c("s"=0,"r"=0,"c"=1)
 )
 {
 if(is.null(Data)){
@@ -299,12 +299,12 @@ if(combine_indices){
 
   AddInd <- AddInd[,AddInd_names_o,,drop=FALSE]
   CV_AddInd <- CV_AddInd[,AddInd_names_o,,drop=FALSE]
-  AddIndFleetType <- str_extract(AddInd_names_o,"^{1}.") # Get first letter of AddInd_names_o
+  AddIndFleetCategory <- stringr::str_extract(dimnames(AddInd)[[2]],"^{1}.") # Get first letter of AddInd names
 
   slot(Data,"AddInd") <- AddInd
   slot(Data,"CV_AddInd") <- CV_AddInd
-  slot(Data,"AddIndType") <- rep(1,dim(AddInd)[2]) # Indices are calculated from the total stock (AddIndType=1), with respect to selectivity
-  slot(Data,"AddIunits") <- AddIndFleetType_key[AddIndFleetType] # Indices are calculated from the total stock (AddIndType=1), with respect to selectivity
+  slot(Data,"AddIndType") <- rep(1,dim(AddInd)[2])                    # Indices are calculated from the total stock (AddIndType=1), with respect to selectivity
+  slot(Data,"AddIunits") <- AddIndFleetUnits_key[AddIndFleetCategory] # Recreational and survey indices are usually in numbers (0) while commercial indices are usually in biomass (1)
   }
 
 }
@@ -557,3 +557,7 @@ slot(Data,"Cref") <- Cref
 
 return(Data)
 }
+
+#' @rdname rdat2Data
+#' @export
+rdat_to_Data <- rdat2Data
