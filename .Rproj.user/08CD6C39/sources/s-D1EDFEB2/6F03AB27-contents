@@ -230,7 +230,7 @@ CV_Cat <- matrix(0.05,nrow=nsim,ncol=nyear,dimnames=list("sim"=1:nsim,"year"=yea
 
 # Abundance Index (Ind): Relative abundance index (NOTE: MSEtool wants Ind to be a matrix)
 if(!identical(Ind_abb,"none")){
-IndCalc <<- local({
+IndCalc <- local({
   D <- t.series[cc.yrCat,]
   x <- names(D)
   Ind_names_all <- x[grepl(pattern="U.",x=x)&grepl(pattern=".ob",x=x)]

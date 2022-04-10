@@ -118,7 +118,8 @@ the AddIndV slot to correspond to the AddInd and CV_AddInd slots}
 attempt to sort AddInd, CV_AddInd, and AddIndV in this order. The order of indices doesn't matter in most cases, but when using
 interim management procedures built with \code{\link[SAMtool]{make_interimMP}} the interim procedure will use the first index.
 \code{AddInd_order} does not need to include the abbreviations for all indices. Simply indicating the abbreviation of a single index
-will result in that index being first in the order followed by the remaining indices in the order they were provided. A value of "" will not modify the order of the indices.}
+will result in that index being first in the order followed by the remaining indices in the order they were provided. A value of "" will not modify the order of the indices.
+A value of "CVlo" will sort the indices in increasing order of mean index CV.}
 
 \item{AddIndFleetUnits_key}{Named numeric vector indicating the units of each fleet category (s=survey, r=recreational, c=commercial) used
 to determine AddIunits (see \code{\link[MSEtool]{Data-class}}). The names of the values in the key are matched to the first letter of the
