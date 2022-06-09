@@ -34,7 +34,6 @@
 #' @param AddIndFleetUnits_key Named numeric vector indicating the units of each fleet category (s=survey, r=recreational, c=commercial) used
 #' to determine AddIunits (see \code{\link[MSEtool]{Data-class}}). The names of the values in the key are matched to the first letter of the
 #' abbreviations of the indices.
-#' @details
 #'
 #' @keywords bam stock assessment fisheries MSEtool
 #' @author Nikolai Klibansky
@@ -565,7 +564,3 @@ slot(Data,"Cref") <- Cref
 
 return(Data)
 }
-
-#' @rdname rdat2Data
-#' @export
-rdat_to_Data <- rdat2Data

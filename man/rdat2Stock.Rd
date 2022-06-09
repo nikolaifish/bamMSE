@@ -2,46 +2,9 @@
 % Please edit documentation in R/rdat2Stock.r
 \name{rdat2Stock}
 \alias{rdat2Stock}
-\alias{rdat_to_Stock}
 \title{Build MSEtool Stock object from bam rdat object}
 \usage{
 rdat2Stock(
-  rdat,
-  Stock = new("Stock"),
-  sc = 0,
-  scLim = sc * c(-1, 1) + 1,
-  M_scLim = 0.001 * c(-1, 1) + 1,
-  is_M_age_varying = FALSE,
-  steep_scLim = scLim,
-  rec_sigma_scLim = scLim,
-  rec_AC_scLim = scLim,
-  Linf_scLim = scLim,
-  K_scLim = scLim,
-  t0_scLim = scLim,
-  len_cv_val_scLim = scLim,
-  L_50_scLim = scLim,
-  L50_95_scLim = scLim,
-  D_scLim = scLim,
-  Msd = c(0, 0),
-  Ksd = c(0, 0),
-  Linfsd = c(0, 0),
-  length_sc = 0.1,
-  wla_sc = NULL,
-  Size_area_1 = c(0.5, 0.5),
-  Frac_area_1 = c(0.5, 0.5),
-  Prob_staying = c(0.5, 0.5),
-  SRrel = 1,
-  R0 = 1000,
-  use_bam_R0 = TRUE,
-  AC = 0.2,
-  use_bam_AC = TRUE,
-  Fdisc = NULL,
-  Mat_age1_max = 0.49,
-  herm = NULL,
-  genus_species = NULL
-)
-
-rdat_to_Stock(
   rdat,
   Stock = new("Stock"),
   sc = 0,

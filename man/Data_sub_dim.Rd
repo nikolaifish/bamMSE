@@ -16,9 +16,6 @@ Data_sub_dim(Data, nyr_rm = 0, type = "year")
 \description{
 Subset MSEtool Data object from bam rdat object based on a particular dimension (i.e. year,)
 }
-\details{
-
-}
 \examples{
 \dontrun{
 # Convert Black Sea Bass rdat to Data object

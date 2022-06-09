@@ -2,22 +2,9 @@
 % Please edit documentation in R/rdat2Obs.r
 \name{rdat2Obs}
 \alias{rdat2Obs}
-\alias{rdat_to_Obs}
 \title{Build MSEtool Obs (observation) object from bam rdat object}
 \usage{
 rdat2Obs(
-  rdat,
-  Obs = Perfect_Info,
-  Ind_abb = "all",
-  CAA_abb = "all",
-  CAL_abb = "all",
-  Cobs = c(0.05, 0.05),
-  catch_sc = 1,
-  CAA_ESS_sc = 0.3,
-  CAL_ESS_sc = 0.3
-)
-
-rdat_to_Obs(
   rdat,
   Obs = Perfect_Info,
   Ind_abb = "all",

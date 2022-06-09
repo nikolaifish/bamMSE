@@ -3,7 +3,6 @@
 #' @param Data MSEtool Data object
 #' @param nyr_rm number of years to remove from the end of the data series. used if type = "year".
 #' @param type type of subsetting to do: "year" = trim year dimension. Right now, "year" is the only option, though "age" may be added in the future.
-#' @details
 #'
 #' @keywords bam stock assessment fisheries MSEtool
 #' @author Nikolai Klibansky

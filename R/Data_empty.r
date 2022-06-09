@@ -1,7 +1,6 @@
 #' Create a completely empty Data object
 #'
 #' @param Data Data object
-#' @details
 #'
 #' @keywords bam stock assessment fisheries MSEtool
 #' @author Nikolai Klibansky

@@ -118,7 +118,3 @@ slot(Fleet,"Spat_targ") <- Spat_targ
 
 return(Fleet)
 }
-
-#' @rdname rdat2Fleet
-#' @export
-rdat_to_Fleet <- rdat2Fleet

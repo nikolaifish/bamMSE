@@ -32,4 +32,4 @@ library(stringr)
 
 # Install package
 devtools::document(file.path(dirname(getwd()),"bamMSE")) # Important for updating package
-devtools::install(file.path(dirname(getwd()),"bamMSE"),build_vignettes = FALSE)
+devtools::install(file.path(dirname(getwd()),"bamMSE"),build_vignettes = TRUE)

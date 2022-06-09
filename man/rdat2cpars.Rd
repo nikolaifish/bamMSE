@@ -2,21 +2,9 @@
 % Please edit documentation in R/rdat2cpars.r
 \name{rdat2cpars}
 \alias{rdat2cpars}
-\alias{rdat_to_cpars}
 \title{Build MSEtool cpars list from bam rdat object}
 \usage{
 rdat2cpars(
-  rdat,
-  nsim,
-  nyears = NULL,
-  proyears = 50,
-  Mat_age1_max = 0.49,
-  herm = NULL,
-  V_scaleToMax = FALSE,
-  ret_scaleToMax = FALSE
-)
-
-rdat_to_cpars(
   rdat,
   nsim,
   nyears = NULL,

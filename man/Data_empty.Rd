@@ -12,9 +12,6 @@ Data_empty(Data = NULL)
 \description{
 Create a completely empty Data object
 }
-\details{
-
-}
 \examples{
 \dontrun{
 Data_empty()

@@ -121,7 +121,3 @@ rdat2cpars <- function(rdat,nsim,nyears=NULL,proyears=50,
 
   return(cpars)
 }
-
-#' @rdname rdat2cpars
-#' @export
-rdat_to_cpars <- rdat2cpars

@@ -221,7 +221,3 @@ slot(Stock,"Source") <- paste0(paste(unlist(info[c("species","title","date")]),c
 
 return(Stock)
 }
-
-#' @rdname rdat2Stock
-#' @export
-rdat_to_Stock <- rdat2Stock

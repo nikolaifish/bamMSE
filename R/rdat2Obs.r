@@ -274,7 +274,3 @@ rdat2Obs <- function(
 
 return(Obs)
 }
-
-#' @rdname rdat2Obs
-#' @export
-rdat_to_Obs <- rdat2Obs

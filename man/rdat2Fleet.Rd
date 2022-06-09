@@ -2,29 +2,9 @@
 % Please edit documentation in R/rdat2Fleet.r
 \name{rdat2Fleet}
 \alias{rdat2Fleet}
-\alias{rdat_to_Fleet}
 \title{Build MSEtool Stock object from bam rdat object}
 \usage{
 rdat2Fleet(
-  rdat,
-  Fleet = new("Fleet"),
-  length_sc = 0.1,
-  Eff_sc = 0.01 * c(-1, 1) + 1,
-  Spat_targ = c(1, 1),
-  Esd = c(0, 0),
-  qinc = c(0, 0),
-  qcv = c(0, 0),
-  L5_sc = c(1, 1),
-  LFS_sc = c(1, 1),
-  LR5_sc = c(1, 1),
-  LFR_sc = c(1, 1),
-  Vmaxlen = c(1, 1),
-  Rmaxlen = c(1, 1),
-  DR = NULL,
-  isRel = FALSE
-)
-
-rdat_to_Fleet(
   rdat,
   Fleet = new("Fleet"),
   length_sc = 0.1,

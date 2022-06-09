@@ -2,40 +2,9 @@
 % Please edit documentation in R/rdat2Data.r
 \name{rdat2Data}
 \alias{rdat2Data}
-\alias{rdat_to_Data}
 \title{Build MSEtool Data object from bam rdat object}
 \usage{
 rdat2Data(
-  rdat,
-  Data = NULL,
-  herm = NULL,
-  nsim = 1,
-  genus_species = NULL,
-  Region = "Southeast US Atlantic",
-  Fref_name = "Fmsy",
-  Rec = "bam_recruits",
-  CAA_abb = "all",
-  CAL_abb = "all",
-  Ind_abb = "all",
-  CV_vbK = 0.001,
-  CV_vbLinf = 0.001,
-  CV_vbt0 = 0.001,
-  CV_Cat = NULL,
-  Mat_age1_max = 0.49,
-  length_sc = 0.1,
-  wla_sc = NULL,
-  wla_unit = "lbs",
-  wla_unit_mult = 1000,
-  catch_sc = 1,
-  combine_indices = FALSE,
-  fleet_sel_abb_key = data.frame(U = c("sTV", "rHB", "rGN"), sel = c("sCT", "rGN",
-    "rHB")),
-  AddInd_order = c("sTV", "sCT", "sVD", "sBL", "sVL", "sBT", "sFT", "rHB", "rHB.D",
-    "cDV", "cHL", "cLL", "cOT", "cPT", "cGN", "rGN"),
-  AddIndFleetUnits_key = c(s = 0, r = 0, c = 1)
-)
-
-rdat_to_Data(
   rdat,
   Data = NULL,
   herm = NULL,
@@ -127,9 +96,6 @@ abbreviations of the indices.}
 }
 \description{
 Build MSEtool Data object from bam rdat object
-}
-\details{
-
 }
 \examples{
 \dontrun{
