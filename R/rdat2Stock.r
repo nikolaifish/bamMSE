@@ -169,7 +169,7 @@ slot(Stock,"b") <- wlb
 slot(Stock,"Linf") <-  Linf*Linf_scLim
 slot(Stock,"K") <- K*K_scLim
 slot(Stock,"t0") <- t0*t0_scLim
-slot(Stock,"LenCV") <- parm.cons$len_cv_val[8]*len_cv_val_scLim
+slot(Stock,"LenCV") <- parm.cons$len.cv.val[8]*len_cv_val_scLim
 slot(Stock,"Ksd") <- Ksd
 slot(Stock,"Linfsd") <- Linfsd
 
